@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+
+{% block body %}
+<style>
+    table, th {
+      border:1px solid black;
+    }
+    </style>
+{%if todos%}
+<div class="container py-4" >
+<ul>
+{%for todo in todos%}
+<table style="width:30%">
+    <tr>
+<td><li><a href="{% url 'app:detail' todo.id %}">{{todo.todo_name}}</a></li></td>
+
+<form action="/delete_todo" method="POST" class="btn-block">
+    {% csrf_token %}
+    <input hidden type="text" name='todos' value='{{todo.id}}'>
+  <td>  <input type="submit" class="btn btn-dark"
+        value="Completed"></td>
+</form>
+</tr>
+</table>
+
+{% endfor %}
+
+</ul>
+</div>
+{% endif %}
+{% endblock body %}

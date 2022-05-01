@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+
+{% block body %}
+{% if todo %}
+<p>{{todo.desc}}</p>
+
+
+<a href="{% url 'app:index'%}">Go Back?</a>
+{% endif %}
+{% endblock body %}
